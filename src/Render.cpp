@@ -32,6 +32,8 @@ struct	Render::Region
 	unsigned			spriteCount;
 
 	const Texture*		testTexture;
+
+	float				distortionPhase, distortionMag;
 };
 
 Render::Render()
@@ -45,6 +47,7 @@ Render::~Render()
 void	Render::render( const View& view, const Map& map, Texture& disp ) const
 {
 	auto startTime = std::chrono::system_clock::now();
+	static float sDistortionPhase = 0.f;
 
 	const unsigned threadCount = 8;
 	std::thread threads[threadCount];
@@ -70,6 +73,9 @@ void	Render::render( const View& view, const Map& map, Texture& disp ) const
 		regions[i].sprites = sprites;
 		regions[i].spriteCount = sizeof(sprites)/sizeof(sprites[0]);
 		regions[i].testTexture = &testTexture;
+
+		regions[i].distortionMag = .01f;
+		regions[i].distortionPhase = (sDistortionPhase += 1.f/120.f);
 
 		#ifdef THREADED_RENDER
 			threads[i] = std::thread( Render::renderRegion, regions[i] );
@@ -109,14 +115,22 @@ void	Render::renderRegion( const Region& region )
 
 	for( unsigned py=region.startRow; py<region.endRow; ++py )
 	{
-		float rayVert = -verticalSpan + float(py)*verticalSpan2;
 		unsigned char* pixel = disp.pixels + py*disp.width*disp.channels;
 
 		for( unsigned px=0; px<disp.width; ++px )
 		{
+			float rayVert = -verticalSpan + float(py)*verticalSpan2;
 			float rayHoriz = -horizontalSpan + float(px)*horizontalSpan2;
+
+			if( region.distortionMag > 0.f )
+			{
+				//experiment: shroom distortion function
+				rayVert += region.distortionMag * cosf( 9.f * rayVert + region.distortionPhase );
+				rayHoriz += region.distortionMag * cosf( 7.f * rayHoriz + region.distortionPhase );
+			}
+
 			vec3 rayDir(
-				//slightly faster explict matrix mul for z=-1
+				//slightly faster explicit matrix mul for z=-1
 				view.transform.f[0]*rayHoriz + (view.transform.f[4]*rayVert - view.transform.f[8]),
 				view.transform.f[1]*rayHoriz + (view.transform.f[5]*rayVert - view.transform.f[9]),
 				view.transform.f[2]*rayHoriz + (view.transform.f[6]*rayVert - view.transform.f[10])
