@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ye
+namespace cc
 {
 
 struct Vertex

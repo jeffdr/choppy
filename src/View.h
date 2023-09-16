@@ -2,7 +2,7 @@
 
 #include "matrix.h"
 
-namespace ye
+namespace cc
 {
 
 struct View

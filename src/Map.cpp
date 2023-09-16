@@ -1,6 +1,6 @@
 #include "Map.h"
 
-namespace ye
+namespace cc
 {
 
 Map::Map()

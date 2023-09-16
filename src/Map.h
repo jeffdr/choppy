@@ -2,7 +2,7 @@
 
 #include "Polygon.h"
 
-namespace ye
+namespace cc
 {
 
 struct Map

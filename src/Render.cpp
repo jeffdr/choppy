@@ -9,7 +9,7 @@
 
 #define THREADED_RENDER
 
-namespace ye
+namespace cc
 {
 
 struct	Render::SpriteRenderable

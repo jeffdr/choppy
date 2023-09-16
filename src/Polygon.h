@@ -2,7 +2,7 @@
 
 #include "Vertex.h"
 
-namespace ye
+namespace cc
 {
 
 struct	Polygon

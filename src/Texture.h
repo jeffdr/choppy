@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-namespace ye
+namespace cc
 {
 
 struct Texture

@@ -2,7 +2,7 @@
 
 #include "vec3.h"
 
-namespace ye
+namespace cc
 {
 
 struct	matrix
@@ -191,9 +191,9 @@ struct	matrix
 	
 	void				setScale( float sx, float sy, float sz )
 	{
-		vec3 bx = ye::normalize( getBasis(0) ); bx *= sx; setBasis(0, bx.x, bx.y, bx.z);
-		vec3 by = ye::normalize( getBasis(1) ); by *= sy; setBasis(1, by.x, by.y, by.z);
-		vec3 bz = ye::normalize( getBasis(2) ); bz *= sz; setBasis(2, bz.x, bz.y, bz.z);
+		vec3 bx = cc::normalize( getBasis(0) ); bx *= sx; setBasis(0, bx.x, bx.y, bx.z);
+		vec3 by = cc::normalize( getBasis(1) ); by *= sy; setBasis(1, by.x, by.y, by.z);
+		vec3 bz = cc::normalize( getBasis(2) ); bz *= sz; setBasis(2, bz.x, bz.y, bz.z);
 	}
 
 	void				rotate( float angle_deg, unsigned axis_basis )
@@ -210,7 +210,7 @@ struct	matrix
 	
 	void				rotate( float angle_deg, const vec3& axis )
 	{
-		const vec3 a = ye::normalize( axis );
+		const vec3 a = cc::normalize( axis );
 		const float	s = sinf( angle_deg * 0.0174532925f );
 		const float	c = cosf( angle_deg * 0.0174532925f );
 		const float	xx = a.x * a.x;
@@ -291,7 +291,7 @@ struct	matrix
 		
 		vec3 a = getBasis(otheraxisindex);
 		a[axis] = 0.f;
-		a = ye::normalize(a);
+		a = cc::normalize(a);
 
 		float angle_radians;
 		float dp = a[otheraxisindex];
@@ -765,11 +765,11 @@ struct	matrix
 		vec3 y( f+4 );
 		vec3 z( f+8 );
 		
-		y = ye::normalize(y);
+		y = cc::normalize(y);
 		x = x - dot(x,y)*y;
-		x = ye::normalize(x);
+		x = cc::normalize(x);
 		z = z - dot(z,x)*x - dot(z,y)*y;
-		z = ye::normalize(z);
+		z = cc::normalize(z);
 
 		f[0] = x[0];
 		f[1] = x[1];

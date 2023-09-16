@@ -1,7 +1,7 @@
 #include "ImageLoader.h"
 #include <stdio.h>
 
-namespace ye
+namespace cc
 {
 
 namespace

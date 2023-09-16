@@ -6,7 +6,7 @@
 #include "Render.h"
 #include "View.h"
 
-using namespace ye;
+using namespace cc;
 
 Map		map;
 View	view;
@@ -19,7 +19,7 @@ void	makeTestMap( Map& map )
 	map.vertices[2] = { 10.f, 10.f };
 	map.vertices[3] = { -10.f, 10.f };
 	
-	ye::Polygon& p = map.polygons[0];
+	cc::Polygon& p = map.polygons[0];
 	p.edgeCount = 4;
 	p.vertices[0] = 0;
 	p.vertices[1] = 1;
@@ -31,7 +31,7 @@ void	makeTestMap( Map& map )
 
 	map.vertices[4] = { 0.f, -15.f };
 
-	ye::Polygon& p2 = map.polygons[1];
+	cc::Polygon& p2 = map.polygons[1];
 	p2.edgeCount = 3;
 	p2.vertices[0] = 1;
 	p2.vertices[1] = 0;

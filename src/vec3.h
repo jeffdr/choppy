@@ -2,7 +2,7 @@
 
 #include <math.h>
 
-namespace ye
+namespace cc
 {
 
 struct	vec3

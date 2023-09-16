@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <windowsx.h>
 
-namespace ye
+namespace cc
 {
 
 struct WindowProc

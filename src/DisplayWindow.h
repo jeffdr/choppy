@@ -2,7 +2,7 @@
 
 #include "Texture.h"
 
-namespace ye
+namespace cc
 {
 
 class	DisplayWindow
