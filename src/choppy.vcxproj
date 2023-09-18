@@ -29,6 +29,7 @@
     <ClInclude Include="DisplayWindow.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MathTools.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Render.h" />

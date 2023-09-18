@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Texture.h"
 #include "ImageLoader.h"
+#include "MathTools.h"
 #include <math.h>
 #include <chrono>
 #include <xmmintrin.h>
@@ -125,8 +126,8 @@ void	Render::renderRegion( const Region& region )
 			if( region.distortionMag > 0.f )
 			{
 				//experiment: shroom distortion function
-				rayVert += region.distortionMag * cosf( 9.f * rayVert + region.distortionPhase );
-				rayHoriz += region.distortionMag * cosf( 7.f * rayHoriz + region.distortionPhase );
+				rayVert += region.distortionMag * crudeCos( 9.f * rayVert + region.distortionPhase );
+				rayHoriz += region.distortionMag * crudeCos( 7.f * rayHoriz + region.distortionPhase );
 			}
 
 			vec3 rayDir(
