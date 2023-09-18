@@ -223,7 +223,15 @@ void	Render::renderRegion( const Region& region )
 			}
 
 			//sample test texture
-			memcpy( pixel, region.testTexture->sample( u,v ), 3 );
+			const unsigned char* samp = region.testTexture->sample( u,v );
+
+			//basic attenuated lighting placeholder
+			unsigned atten = unsigned( (32.f*256.f) / (t*t) );
+			atten = atten > 0xff ? 0xff : atten;
+			pixel[0] = (unsigned char)( (atten * samp[0]) >> 8 );
+			pixel[1] = (unsigned char)( (atten * samp[1]) >> 8 );
+			pixel[2] = (unsigned char)( (atten * samp[2]) >> 8 );
+
 			pixel += disp.channels;
 		}
 	}
